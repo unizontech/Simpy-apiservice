@@ -1,0 +1,201 @@
+{
+  "scenario": {
+    "arrival_rate": 50,
+    "simulation_time": 60,
+    "timestamp": "2025-09-02T17:36:13.144519",
+    "pattern_weights": {
+      "simple_read": 40.0,
+      "user_auth": 25.0,
+      "data_processing": 20.0,
+      "file_upload": 8.0,
+      "analytics": 5.0,
+      "admin_task": 2.0
+    }
+  },
+  "pattern_results": {
+    "simple_read": {
+      "request_count": 1156,
+      "success_count": 1156,
+      "success_rate_percent": 100.0,
+      "total_time_seconds": 312.541,
+      "average_time_seconds": 0.27
+    },
+    "user_auth": {
+      "request_count": 725,
+      "success_count": 725,
+      "success_rate_percent": 100.0,
+      "total_time_seconds": 326.777,
+      "average_time_seconds": 0.451
+    },
+    "data_processing": {
+      "request_count": 614,
+      "success_count": 614,
+      "success_rate_percent": 100.0,
+      "total_time_seconds": 623.05,
+      "average_time_seconds": 1.015
+    },
+    "analytics": {
+      "request_count": 163,
+      "success_count": 163,
+      "success_rate_percent": 100.0,
+      "total_time_seconds": 242.784,
+      "average_time_seconds": 1.489
+    },
+    "file_upload": {
+      "request_count": 87,
+      "success_count": 87,
+      "success_rate_percent": 100.0,
+      "total_time_seconds": 1833.922,
+      "average_time_seconds": 21.08
+    },
+    "admin_task": {
+      "request_count": 13,
+      "success_count": 13,
+      "success_rate_percent": 100.0,
+      "total_time_seconds": 327.573,
+      "average_time_seconds": 25.198
+    }
+  },
+  "servers": {
+    "Nginx": {
+      "total_requests": 2986,
+      "request_type_distribution": {
+        "simple_read": 1163,
+        "user_auth": 735,
+        "data_processing": 624,
+        "file_upload": 240,
+        "analytics": 172,
+        "admin_task": 53
+      },
+      "resource_usage": {
+        "cpu_utilization_percent": 5.370833333333462,
+        "average_ram_usage_gb": 14.548225050234427,
+        "average_response_time_seconds": 0.029661419959814146
+      }
+    },
+    "APP1": {
+      "total_requests": 2979,
+      "request_type_distribution": {
+        "simple_read": 1162,
+        "user_auth": 735,
+        "data_processing": 624,
+        "file_upload": 240,
+        "analytics": 172,
+        "admin_task": 53
+      },
+      "resource_usage": {
+        "cpu_utilization_percent": 13.321874999999864,
+        "average_ram_usage_gb": 46.62403491104398,
+        "average_response_time_seconds": 0.10291708627056116
+      }
+    },
+    "Auth": {
+      "total_requests": 1021,
+      "request_type_distribution": {
+        "user_auth": 732,
+        "file_upload": 239,
+        "admin_task": 53
+      },
+      "resource_usage": {
+        "cpu_utilization_percent": 23.97500000000011,
+        "average_ram_usage_gb": 28.255631733594516,
+        "average_response_time_seconds": 0.11651234993800028
+      }
+    },
+    "Policy": {
+      "total_requests": 782,
+      "request_type_distribution": {
+        "user_auth": 732,
+        "admin_task": 53
+      },
+      "resource_usage": {
+        "cpu_utilization_percent": 8.159375000000146,
+        "average_ram_usage_gb": 30.107416879795398,
+        "average_response_time_seconds": 0.11008312020460521
+      }
+    },
+    "Service": {
+      "total_requests": 2958,
+      "request_type_distribution": {
+        "simple_read": 1160,
+        "data_processing": 624,
+        "user_auth": 729,
+        "analytics": 171,
+        "file_upload": 239,
+        "admin_task": 53
+      },
+      "resource_usage": {
+        "cpu_utilization_percent": 23.429166666666976,
+        "average_ram_usage_gb": 34.33367139959432,
+        "average_response_time_seconds": 0.13631415239260072
+      }
+    },
+    "DB": {
+      "total_requests": 832,
+      "request_type_distribution": {
+        "data_processing": 622,
+        "analytics": 171,
+        "admin_task": 53
+      },
+      "resource_usage": {
+        "cpu_utilization_percent": 10.703124999999943,
+        "average_ram_usage_gb": 41.66346153846154,
+        "average_response_time_seconds": 0.5574596233770482
+      }
+    },
+    "Logger": {
+      "total_requests": 452,
+      "request_type_distribution": {
+        "file_upload": 236,
+        "analytics": 163,
+        "admin_task": 53
+      },
+      "resource_usage": {
+        "cpu_utilization_percent": 5.379166666666668,
+        "average_ram_usage_gb": 14.276548672566372,
+        "average_response_time_seconds": 0.08856194690265508
+      }
+    },
+    "S3": {
+      "total_requests": 100,
+      "request_type_distribution": {
+        "file_upload": 236,
+        "admin_task": 53
+      },
+      "resource_usage": {
+        "cpu_utilization_percent": 1.3958333333333306,
+        "average_ram_usage_gb": 2.6,
+        "average_response_time_seconds": 20.87874078175798
+      }
+    },
+    "ServiceHub": {
+      "total_requests": 831,
+      "request_type_distribution": {
+        "data_processing": 615,
+        "analytics": 164,
+        "admin_task": 53
+      },
+      "resource_usage": {
+        "cpu_utilization_percent": 9.514583333333283,
+        "average_ram_usage_gb": 52.98676293622142,
+        "average_response_time_seconds": 0.16991576413959064
+      }
+    },
+    "APP2": {
+      "total_requests": 2758,
+      "request_type_distribution": {
+        "simple_read": 1156,
+        "user_auth": 725,
+        "data_processing": 615,
+        "analytics": 163,
+        "file_upload": 87,
+        "admin_task": 13
+      },
+      "resource_usage": {
+        "cpu_utilization_percent": 9.765625000000199,
+        "average_ram_usage_gb": 53.56526468455402,
+        "average_response_time_seconds": 0.09399202320522218
+      }
+    }
+  }
+}
