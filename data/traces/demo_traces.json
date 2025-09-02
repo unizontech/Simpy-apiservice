@@ -1,0 +1,2452 @@
+{
+  "pattern_paths": {
+    "simple_read": [
+      "Nginx",
+      "APP1",
+      "Service",
+      "APP2"
+    ],
+    "user_auth": [
+      "Nginx",
+      "APP1",
+      "Auth",
+      "Policy",
+      "Service",
+      "APP2"
+    ],
+    "data_processing": [
+      "Nginx",
+      "APP1",
+      "Service",
+      "DB",
+      "ServiceHub",
+      "APP2"
+    ],
+    "file_upload": [
+      "Nginx",
+      "APP1",
+      "Auth",
+      "Service",
+      "S3",
+      "Logger",
+      "APP2"
+    ],
+    "analytics": [
+      "Nginx",
+      "APP1",
+      "Service",
+      "DB",
+      "ServiceHub",
+      "APP2",
+      "Logger"
+    ],
+    "admin_task": [
+      "Nginx",
+      "APP1",
+      "Auth",
+      "Policy",
+      "Service",
+      "DB",
+      "ServiceHub",
+      "S3",
+      "Logger",
+      "APP2"
+    ]
+  },
+  "request_traces": {
+    "req_001": {
+      "pattern": "simple_read",
+      "start_time": 1756814973.8887415,
+      "end_time": 1756814974.0673258,
+      "total_duration": 0.17858433723449707,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Service",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 9.643170717227093,
+        "APP1": 53.885964918032265,
+        "Service": 79.83600911363132,
+        "APP2": 35.2193987984772
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8887415,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8983846,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 9.643170717227093,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8983846,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9522705,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 53.885964918032265,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9522705,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0321064,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 79.83600911363132,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0321064,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0673258,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 35.2193987984772,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_002": {
+      "pattern": "simple_read",
+      "start_time": 1756814973.8887706,
+      "end_time": 1756814974.0743663,
+      "total_duration": 0.18559575080871582,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Service",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 9.380199122509481,
+        "APP1": 49.46241499457071,
+        "Service": 87.52716181135064,
+        "APP2": 39.22602164530228
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8887706,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8981507,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 9.380199122509481,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8981507,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.947613,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 49.46241499457071,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.947613,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0351403,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 87.52716181135064,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0351403,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0743663,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 39.22602164530228,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_003": {
+      "pattern": "simple_read",
+      "start_time": 1756814973.8887835,
+      "end_time": 1756814974.0706244,
+      "total_duration": 0.1818408966064453,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Service",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 9.816438840168182,
+        "APP1": 52.51939988147765,
+        "Service": 85.58179711130457,
+        "APP2": 33.923311874316376
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8887835,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8985999,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 9.816438840168182,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8985999,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9511192,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 52.51939988147765,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9511192,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.036701,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 85.58179711130457,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.036701,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0706244,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 33.923311874316376,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_004": {
+      "pattern": "user_auth",
+      "start_time": 1756814973.8887947,
+      "end_time": 1756814974.1205726,
+      "total_duration": 0.23177790641784668,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Auth",
+        "Policy",
+        "Service",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 8.125885201775311,
+        "APP1": 44.883647408472214,
+        "Auth": 54.46767709508631,
+        "Policy": 48.089158126804165,
+        "Service": 43.38955342453188,
+        "APP2": 32.821799939027954
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8887947,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8969204,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 8.125885201775311,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8969204,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9418042,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 44.883647408472214,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9418042,
+          "server": "Auth",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9962718,
+          "server": "Auth",
+          "event_type": "end",
+          "duration_ms": 54.46767709508631,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9962718,
+          "server": "Policy",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.044361,
+          "server": "Policy",
+          "event_type": "end",
+          "duration_ms": 48.089158126804165,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.044361,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0877507,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 43.38955342453188,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0877507,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1205726,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 32.821799939027954,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_005": {
+      "pattern": "user_auth",
+      "start_time": 1756814973.888806,
+      "end_time": 1756814974.124554,
+      "total_duration": 0.2357478141784668,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Auth",
+        "Policy",
+        "Service",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 9.548356245438871,
+        "APP1": 34.55295072934837,
+        "Auth": 60.88903861133032,
+        "Policy": 47.00516671941213,
+        "Service": 54.363094359768674,
+        "APP2": 29.389128556516038
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.888806,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8983545,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 9.548356245438871,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8983545,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9329076,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 34.55295072934837,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9329076,
+          "server": "Auth",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9937966,
+          "server": "Auth",
+          "event_type": "end",
+          "duration_ms": 60.88903861133032,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9937966,
+          "server": "Policy",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0408018,
+          "server": "Policy",
+          "event_type": "end",
+          "duration_ms": 47.00516671941213,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0408018,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0951648,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 54.363094359768674,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0951648,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.124554,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 29.389128556516038,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_006": {
+      "pattern": "user_auth",
+      "start_time": 1756814973.8888183,
+      "end_time": 1756814974.1296523,
+      "total_duration": 0.24083399772644043,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Auth",
+        "Policy",
+        "Service",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 10.380037313321457,
+        "APP1": 45.25025511194144,
+        "Auth": 51.93098903170626,
+        "Policy": 47.93343449036834,
+        "Service": 54.47654742103419,
+        "APP2": 30.86308431787969
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8888183,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8991983,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 10.380037313321457,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8991983,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9444485,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 45.25025511194144,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9444485,
+          "server": "Auth",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9963794,
+          "server": "Auth",
+          "event_type": "end",
+          "duration_ms": 51.93098903170626,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9963794,
+          "server": "Policy",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0443127,
+          "server": "Policy",
+          "event_type": "end",
+          "duration_ms": 47.93343449036834,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0443127,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0987892,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 54.47654742103419,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0987892,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1296523,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 30.86308431787969,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_007": {
+      "pattern": "data_processing",
+      "start_time": 1756814973.8888297,
+      "end_time": 1756814974.4002779,
+      "total_duration": 0.5114481449127197,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Service",
+        "DB",
+        "ServiceHub",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 10.00367372652655,
+        "APP1": 50.807122926271084,
+        "Service": 96.01582535880266,
+        "DB": 225.29042113296435,
+        "ServiceHub": 65.65233387195816,
+        "APP2": 63.678398739801175
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8888297,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8988333,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 10.00367372652655,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8988333,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9496405,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 50.807122926271084,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9496405,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0456564,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 96.01582535880266,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0456564,
+          "server": "DB",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.270947,
+          "server": "DB",
+          "event_type": "end",
+          "duration_ms": 225.29042113296435,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.270947,
+          "server": "ServiceHub",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.3365993,
+          "server": "ServiceHub",
+          "event_type": "end",
+          "duration_ms": 65.65233387195816,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.3365993,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.4002779,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 63.678398739801175,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_008": {
+      "pattern": "data_processing",
+      "start_time": 1756814973.8888419,
+      "end_time": 1756814974.4023044,
+      "total_duration": 0.5134625434875488,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Service",
+        "DB",
+        "ServiceHub",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 11.374568685958579,
+        "APP1": 41.09167790426613,
+        "Service": 114.91900976671891,
+        "DB": 198.53967811865706,
+        "ServiceHub": 79.58704928613,
+        "APP2": 67.95061482400286
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8888419,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9002163,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 11.374568685958579,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9002163,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.941308,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 41.09167790426613,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.941308,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.056227,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 114.91900976671891,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.056227,
+          "server": "DB",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.2547667,
+          "server": "DB",
+          "event_type": "end",
+          "duration_ms": 198.53967811865706,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.2547667,
+          "server": "ServiceHub",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.3343537,
+          "server": "ServiceHub",
+          "event_type": "end",
+          "duration_ms": 79.58704928613,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.3343537,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.4023044,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 67.95061482400286,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_009": {
+      "pattern": "data_processing",
+      "start_time": 1756814973.8888533,
+      "end_time": 1756814974.3441486,
+      "total_duration": 0.4552953243255615,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Service",
+        "DB",
+        "ServiceHub",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 10.340639386810675,
+        "APP1": 48.87279248672743,
+        "Service": 90.20815828511772,
+        "DB": 162.1610057552912,
+        "ServiceHub": 77.11154055506094,
+        "APP2": 66.60123994154047
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8888533,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.899194,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 10.340639386810675,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.899194,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9480667,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 48.87279248672743,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9480667,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0382748,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 90.20815828511772,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0382748,
+          "server": "DB",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.2004359,
+          "server": "DB",
+          "event_type": "end",
+          "duration_ms": 162.1610057552912,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.2004359,
+          "server": "ServiceHub",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.2775474,
+          "server": "ServiceHub",
+          "event_type": "end",
+          "duration_ms": 77.11154055506094,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.2775474,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.3441486,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 66.60123994154047,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_010": {
+      "pattern": "file_upload",
+      "start_time": 1756814973.8888643,
+      "end_time": 1756814974.271642,
+      "total_duration": 0.38277769088745117,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Auth",
+        "Service",
+        "S3",
+        "Logger",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 17.061302271875352,
+        "APP1": 88.59431091176037,
+        "Auth": 40.10471871236554,
+        "Service": 131.81664764243087,
+        "S3": 31.036181615959617,
+        "Logger": 27.295758939749405,
+        "APP2": 46.868934277349496
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8888643,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9059255,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 17.061302271875352,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9059255,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9945197,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 88.59431091176037,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9945197,
+          "server": "Auth",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0346243,
+          "server": "Auth",
+          "event_type": "end",
+          "duration_ms": 40.10471871236554,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0346243,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.166441,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 131.81664764243087,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.166441,
+          "server": "S3",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.197477,
+          "server": "S3",
+          "event_type": "end",
+          "duration_ms": 31.036181615959617,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.197477,
+          "server": "Logger",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.224773,
+          "server": "Logger",
+          "event_type": "end",
+          "duration_ms": 27.295758939749405,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.224773,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.271642,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 46.868934277349496,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_011": {
+      "pattern": "file_upload",
+      "start_time": 1756814973.8888772,
+      "end_time": 1756814974.2130852,
+      "total_duration": 0.32420802116394043,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Auth",
+        "Service",
+        "S3",
+        "Logger",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 14.95760739732957,
+        "APP1": 75.14496982742932,
+        "Auth": 33.87635021713847,
+        "Service": 105.22907048903832,
+        "S3": 28.725264533112494,
+        "Logger": 29.522402856249364,
+        "APP2": 36.75230059147858
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8888772,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9038348,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 14.95760739732957,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9038348,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9789798,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 75.14496982742932,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9789798,
+          "server": "Auth",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0128562,
+          "server": "Auth",
+          "event_type": "end",
+          "duration_ms": 33.87635021713847,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0128562,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1180854,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 105.22907048903832,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1180854,
+          "server": "S3",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1468105,
+          "server": "S3",
+          "event_type": "end",
+          "duration_ms": 28.725264533112494,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1468105,
+          "server": "Logger",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.176333,
+          "server": "Logger",
+          "event_type": "end",
+          "duration_ms": 29.522402856249364,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.176333,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.2130852,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 36.75230059147858,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_012": {
+      "pattern": "file_upload",
+      "start_time": 1756814973.8888884,
+      "end_time": 1756814974.213608,
+      "total_duration": 0.3247196674346924,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Auth",
+        "Service",
+        "S3",
+        "Logger",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 14.057436351117923,
+        "APP1": 83.32110942450646,
+        "Auth": 37.279052870066856,
+        "Service": 106.4369760514852,
+        "S3": 29.03331299738315,
+        "Logger": 22.29388280385862,
+        "APP2": 32.297934367937465
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8888884,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9029458,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 14.057436351117923,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9029458,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9862669,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 83.32110942450646,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9862669,
+          "server": "Auth",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.023546,
+          "server": "Auth",
+          "event_type": "end",
+          "duration_ms": 37.279052870066856,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.023546,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.129983,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 106.4369760514852,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.129983,
+          "server": "S3",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1590164,
+          "server": "S3",
+          "event_type": "end",
+          "duration_ms": 29.03331299738315,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1590164,
+          "server": "Logger",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1813102,
+          "server": "Logger",
+          "event_type": "end",
+          "duration_ms": 22.29388280385862,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1813102,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.213608,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 32.297934367937465,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_013": {
+      "pattern": "analytics",
+      "start_time": 1756814973.8891423,
+      "end_time": 1756814975.0372071,
+      "total_duration": 1.1480648517608643,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Service",
+        "DB",
+        "ServiceHub",
+        "APP2",
+        "Logger"
+      ],
+      "timing_summary": {
+        "Nginx": 11.512907069466687,
+        "APP1": 113.57432230618612,
+        "Service": 299.8742209593435,
+        "DB": 439.70369931124065,
+        "ServiceHub": 178.0935854733026,
+        "APP2": 80.74992789167865,
+        "Logger": 24.555979838015364
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8891423,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9006553,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 11.512907069466687,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9006553,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0142295,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 113.57432230618612,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0142295,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.3141038,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 299.8742209593435,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.3141038,
+          "server": "DB",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.7538075,
+          "server": "DB",
+          "event_type": "end",
+          "duration_ms": 439.70369931124065,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.7538075,
+          "server": "ServiceHub",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.9319012,
+          "server": "ServiceHub",
+          "event_type": "end",
+          "duration_ms": 178.0935854733026,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.9319012,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0126512,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 80.74992789167865,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0126512,
+          "server": "Logger",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0372071,
+          "server": "Logger",
+          "event_type": "end",
+          "duration_ms": 24.555979838015364,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_014": {
+      "pattern": "analytics",
+      "start_time": 1756814973.8891551,
+      "end_time": 1756814975.0340471,
+      "total_duration": 1.1448919773101807,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Service",
+        "DB",
+        "ServiceHub",
+        "APP2",
+        "Logger"
+      ],
+      "timing_summary": {
+        "Nginx": 11.223555864161035,
+        "APP1": 112.30403459063068,
+        "Service": 287.45679044267257,
+        "DB": 446.6977007352024,
+        "ServiceHub": 188.61104201598405,
+        "APP2": 70.06814843552706,
+        "Logger": 28.53086830218336
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8891551,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9003787,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 11.223555864161035,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9003787,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0126827,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 112.30403459063068,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0126827,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.3001394,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 287.45679044267257,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.3001394,
+          "server": "DB",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.7468371,
+          "server": "DB",
+          "event_type": "end",
+          "duration_ms": 446.6977007352024,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.7468371,
+          "server": "ServiceHub",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.9354482,
+          "server": "ServiceHub",
+          "event_type": "end",
+          "duration_ms": 188.61104201598405,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.9354482,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0055163,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 70.06814843552706,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0055163,
+          "server": "Logger",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0340471,
+          "server": "Logger",
+          "event_type": "end",
+          "duration_ms": 28.53086830218336,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_015": {
+      "pattern": "analytics",
+      "start_time": 1756814973.8891687,
+      "end_time": 1756814975.0186837,
+      "total_duration": 1.1295149326324463,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Service",
+        "DB",
+        "ServiceHub",
+        "APP2",
+        "Logger"
+      ],
+      "timing_summary": {
+        "Nginx": 8.38093163827411,
+        "APP1": 108.43323649796571,
+        "Service": 319.5578181069979,
+        "DB": 401.23837451557307,
+        "ServiceHub": 179.39855444698273,
+        "APP2": 82.2465754538025,
+        "Logger": 30.25927944531873
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8891687,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8975496,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 8.38093163827411,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.8975496,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0059829,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 108.43323649796571,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0059829,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.3255408,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 319.5578181069979,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.3255408,
+          "server": "DB",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.7267792,
+          "server": "DB",
+          "event_type": "end",
+          "duration_ms": 401.23837451557307,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.7267792,
+          "server": "ServiceHub",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.9061778,
+          "server": "ServiceHub",
+          "event_type": "end",
+          "duration_ms": 179.39855444698273,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.9061778,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.9884243,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 82.2465754538025,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.9884243,
+          "server": "Logger",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0186837,
+          "server": "Logger",
+          "event_type": "end",
+          "duration_ms": 30.25927944531873,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_016": {
+      "pattern": "admin_task",
+      "start_time": 1756814973.8891811,
+      "end_time": 1756814975.087307,
+      "total_duration": 1.1981258392333984,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Auth",
+        "Policy",
+        "Service",
+        "DB",
+        "ServiceHub",
+        "S3",
+        "Logger",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 18.03644202853019,
+        "APP1": 146.85099036113778,
+        "Auth": 64.3066550276122,
+        "Policy": 105.54159119682201,
+        "Service": 206.52223198344961,
+        "DB": 272.8516817427642,
+        "ServiceHub": 182.66140734493328,
+        "S3": 55.63592723466262,
+        "Logger": 46.55325631745715,
+        "APP2": 99.16535211263901
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8891811,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9072175,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 18.03644202853019,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9072175,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0540686,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 146.85099036113778,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0540686,
+          "server": "Auth",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1183753,
+          "server": "Auth",
+          "event_type": "end",
+          "duration_ms": 64.3066550276122,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1183753,
+          "server": "Policy",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.223917,
+          "server": "Policy",
+          "event_type": "end",
+          "duration_ms": 105.54159119682201,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.223917,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.4304392,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 206.52223198344961,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.4304392,
+          "server": "DB",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.703291,
+          "server": "DB",
+          "event_type": "end",
+          "duration_ms": 272.8516817427642,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.703291,
+          "server": "ServiceHub",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.8859522,
+          "server": "ServiceHub",
+          "event_type": "end",
+          "duration_ms": 182.66140734493328,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.8859522,
+          "server": "S3",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.9415882,
+          "server": "S3",
+          "event_type": "end",
+          "duration_ms": 55.63592723466262,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.9415882,
+          "server": "Logger",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.9881415,
+          "server": "Logger",
+          "event_type": "end",
+          "duration_ms": 46.55325631745715,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.9881415,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.087307,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 99.16535211263901,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_017": {
+      "pattern": "admin_task",
+      "start_time": 1756814973.8891978,
+      "end_time": 1756814975.1896656,
+      "total_duration": 1.3004677295684814,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Auth",
+        "Policy",
+        "Service",
+        "DB",
+        "ServiceHub",
+        "S3",
+        "Logger",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 20.0554771643517,
+        "APP1": 142.8924730705616,
+        "Auth": 76.87554912139544,
+        "Policy": 122.93190293871004,
+        "Service": 276.046321766615,
+        "DB": 326.7519658264943,
+        "ServiceHub": 154.6491500661314,
+        "S3": 47.74447530688307,
+        "Logger": 36.17143596773544,
+        "APP2": 96.34910179298183
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8891978,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9092534,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 20.0554771643517,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.9092534,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0521457,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 142.8924730705616,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.0521457,
+          "server": "Auth",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1290212,
+          "server": "Auth",
+          "event_type": "end",
+          "duration_ms": 76.87554912139544,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.1290212,
+          "server": "Policy",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.2519531,
+          "server": "Policy",
+          "event_type": "end",
+          "duration_ms": 122.93190293871004,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.2519531,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.5279994,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 276.046321766615,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.5279994,
+          "server": "DB",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.8547513,
+          "server": "DB",
+          "event_type": "end",
+          "duration_ms": 326.7519658264943,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.8547513,
+          "server": "ServiceHub",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0094006,
+          "server": "ServiceHub",
+          "event_type": "end",
+          "duration_ms": 154.6491500661314,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0094006,
+          "server": "S3",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.057145,
+          "server": "S3",
+          "event_type": "end",
+          "duration_ms": 47.74447530688307,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.057145,
+          "server": "Logger",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0933166,
+          "server": "Logger",
+          "event_type": "end",
+          "duration_ms": 36.17143596773544,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0933166,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.1896656,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 96.34910179298183,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    },
+    "req_018": {
+      "pattern": "admin_task",
+      "start_time": 1756814973.8892138,
+      "end_time": 1756814975.1962318,
+      "total_duration": 1.3070180416107178,
+      "success": true,
+      "path": [
+        "Nginx",
+        "APP1",
+        "Auth",
+        "Policy",
+        "Service",
+        "DB",
+        "ServiceHub",
+        "S3",
+        "Logger",
+        "APP2"
+      ],
+      "timing_summary": {
+        "Nginx": 23.83931726486233,
+        "APP1": 171.28075533261364,
+        "Auth": 75.03694673442905,
+        "Policy": 117.07933291646808,
+        "Service": 256.64655260695235,
+        "DB": 269.0261066340978,
+        "ServiceHub": 208.10782210408334,
+        "S3": 50.03723745555,
+        "Logger": 33.21582619436372,
+        "APP2": 102.74830761504414
+      },
+      "events": [
+        {
+          "timestamp": 1756814973.8892138,
+          "server": "Nginx",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.913053,
+          "server": "Nginx",
+          "event_type": "end",
+          "duration_ms": 23.83931726486233,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814973.913053,
+          "server": "APP1",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.084334,
+          "server": "APP1",
+          "event_type": "end",
+          "duration_ms": 171.28075533261364,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.084334,
+          "server": "Auth",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.159371,
+          "server": "Auth",
+          "event_type": "end",
+          "duration_ms": 75.03694673442905,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.159371,
+          "server": "Policy",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.2764502,
+          "server": "Policy",
+          "event_type": "end",
+          "duration_ms": 117.07933291646808,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.2764502,
+          "server": "Service",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.5330968,
+          "server": "Service",
+          "event_type": "end",
+          "duration_ms": 256.64655260695235,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.5330968,
+          "server": "DB",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.8021228,
+          "server": "DB",
+          "event_type": "end",
+          "duration_ms": 269.0261066340978,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814974.8021228,
+          "server": "ServiceHub",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0102305,
+          "server": "ServiceHub",
+          "event_type": "end",
+          "duration_ms": 208.10782210408334,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0102305,
+          "server": "S3",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0602677,
+          "server": "S3",
+          "event_type": "end",
+          "duration_ms": 50.03723745555,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0602677,
+          "server": "Logger",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0934834,
+          "server": "Logger",
+          "event_type": "end",
+          "duration_ms": 33.21582619436372,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.0934834,
+          "server": "APP2",
+          "event_type": "start",
+          "duration_ms": null,
+          "resource_usage": null,
+          "queue_info": null
+        },
+        {
+          "timestamp": 1756814975.1962318,
+          "server": "APP2",
+          "event_type": "end",
+          "duration_ms": 102.74830761504414,
+          "resource_usage": null,
+          "queue_info": null
+        }
+      ]
+    }
+  }
+}

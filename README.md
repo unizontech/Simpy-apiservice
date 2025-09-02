@@ -1,6 +1,8 @@
-# Simpy-apiservice
+# 🚀 SimPy API Service - Microservice Simulation & Visualization
 
-SimPyを使用したマイクロサービスシステムのシミュレーション
+SimPyを使用したマイクロサービスシステムのシミュレーション with Real-time Visualization, Request Tracing, and Performance Analysis
+
+[English](#english) | [日本語](#japanese)
 
 ## 📋 概要
 

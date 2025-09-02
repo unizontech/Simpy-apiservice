@@ -1,0 +1,212 @@
+{
+  "timestamp": "2025-09-02T21:48:16.498403",
+  "lines": {
+    "山手線": {
+      "stations": [
+        {
+          "name": "東京",
+          "km_mark": 0.0,
+          "is_express_stop": true
+        },
+        {
+          "name": "有楽町",
+          "km_mark": 1.0,
+          "is_express_stop": false
+        },
+        {
+          "name": "新橋",
+          "km_mark": 2.3,
+          "is_express_stop": true
+        },
+        {
+          "name": "浜松町",
+          "km_mark": 3.6,
+          "is_express_stop": false
+        },
+        {
+          "name": "田町",
+          "km_mark": 5.2,
+          "is_express_stop": false
+        },
+        {
+          "name": "品川",
+          "km_mark": 6.8,
+          "is_express_stop": true
+        },
+        {
+          "name": "大崎",
+          "km_mark": 9.2,
+          "is_express_stop": true
+        },
+        {
+          "name": "五反田",
+          "km_mark": 11.0,
+          "is_express_stop": false
+        },
+        {
+          "name": "目黒",
+          "km_mark": 12.9,
+          "is_express_stop": true
+        },
+        {
+          "name": "恵比寿",
+          "km_mark": 14.6,
+          "is_express_stop": true
+        },
+        {
+          "name": "渋谷",
+          "km_mark": 16.7,
+          "is_express_stop": true
+        },
+        {
+          "name": "原宿",
+          "km_mark": 18.3,
+          "is_express_stop": false
+        },
+        {
+          "name": "代々木",
+          "km_mark": 19.7,
+          "is_express_stop": false
+        },
+        {
+          "name": "新宿",
+          "km_mark": 21.3,
+          "is_express_stop": true
+        },
+        {
+          "name": "新大久保",
+          "km_mark": 23.0,
+          "is_express_stop": false
+        },
+        {
+          "name": "高田馬場",
+          "km_mark": 24.2,
+          "is_express_stop": true
+        },
+        {
+          "name": "目白",
+          "km_mark": 25.5,
+          "is_express_stop": false
+        },
+        {
+          "name": "池袋",
+          "km_mark": 27.0,
+          "is_express_stop": true
+        },
+        {
+          "name": "大塚",
+          "km_mark": 29.4,
+          "is_express_stop": false
+        },
+        {
+          "name": "巣鴨",
+          "km_mark": 31.2,
+          "is_express_stop": false
+        },
+        {
+          "name": "駒込",
+          "km_mark": 32.8,
+          "is_express_stop": false
+        },
+        {
+          "name": "田端",
+          "km_mark": 34.5,
+          "is_express_stop": false
+        },
+        {
+          "name": "西日暮里",
+          "km_mark": 36.2,
+          "is_express_stop": true
+        },
+        {
+          "name": "日暮里",
+          "km_mark": 37.8,
+          "is_express_stop": true
+        },
+        {
+          "name": "鶯谷",
+          "km_mark": 39.5,
+          "is_express_stop": false
+        },
+        {
+          "name": "上野",
+          "km_mark": 41.1,
+          "is_express_stop": true
+        },
+        {
+          "name": "御徒町",
+          "km_mark": 42.6,
+          "is_express_stop": false
+        },
+        {
+          "name": "秋葉原",
+          "km_mark": 44.2,
+          "is_express_stop": true
+        },
+        {
+          "name": "神田",
+          "km_mark": 46.0,
+          "is_express_stop": false
+        }
+      ],
+      "trains": {
+        "Y001": {
+          "train_type": "各駅停車",
+          "destination": "外回り",
+          "car_count": 11,
+          "status": "RUNNING",
+          "delay_minutes": 0,
+          "position": {
+            "current_km": 5.221303460492028,
+            "speed_kmh": 43.52237606048583,
+            "next_station": "品川",
+            "distance_to_next": 1.5786965395079715,
+            "estimated_arrival": "2025-09-02T21:50:26.873183"
+          }
+        },
+        "Y002": {
+          "train_type": "各駅停車",
+          "destination": "内回り",
+          "car_count": 11,
+          "status": "RUNNING",
+          "delay_minutes": 0,
+          "position": {
+            "current_km": 25.20630353233549,
+            "speed_kmh": 40.522403049469,
+            "next_station": "目白",
+            "distance_to_next": 0.2936964676645104,
+            "estimated_arrival": "2025-09-02T21:48:42.381563"
+          }
+        },
+        "Y003": {
+          "train_type": "各駅停車",
+          "destination": "外回り",
+          "car_count": 11,
+          "status": "RUNNING",
+          "delay_minutes": 0,
+          "position": {
+            "current_km": 40.19630358107886,
+            "speed_kmh": 38.522421646118154,
+            "next_station": "上野",
+            "distance_to_next": 0.9036964189211432,
+            "estimated_arrival": "2025-09-02T21:49:40.741949"
+          }
+        },
+        "E001": {
+          "train_type": "特急",
+          "destination": "品川",
+          "car_count": 10,
+          "status": "RUNNING",
+          "delay_minutes": 0,
+          "position": {
+            "current_km": 0.321303627067142,
+            "speed_kmh": 63.522440242767324,
+            "next_station": "有楽町",
+            "distance_to_next": 0.678696372932858,
+            "estimated_arrival": "2025-09-02T21:48:54.753337"
+          }
+        }
+      }
+    }
+  }
+}

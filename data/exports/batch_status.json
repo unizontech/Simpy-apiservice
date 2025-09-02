@@ -1,0 +1,121 @@
+{
+  "timestamp": "2025-09-02T21:21:40.664377",
+  "jobs": {
+    "Data Migration": {
+      "name": "Data Migration",
+      "status": "RUNNING",
+      "overall_progress": 25.325,
+      "overall_eta": 11.984278055337759,
+      "start_time": 1756815690.1546872,
+      "end_time": null,
+      "steps": [
+        {
+          "name": "Extract Data",
+          "status": "COMPLETED",
+          "progress_percent": 100.0,
+          "completed_items": 1000,
+          "total_items": 1000,
+          "current_item": "Processing item 1000/1000",
+          "items_per_second": 96.56303338633248,
+          "eta_seconds": 0.0,
+          "elapsed_time": 10.355929851531982,
+          "error_message": ""
+        },
+        {
+          "name": "Transform Data",
+          "status": "RUNNING",
+          "progress_percent": 1.3,
+          "completed_items": 13,
+          "total_items": 1000,
+          "current_item": "Processing item 13/1000",
+          "items_per_second": 84.52207611426905,
+          "eta_seconds": 11.67749498440669,
+          "elapsed_time": 0.1538071632385254,
+          "error_message": ""
+        },
+        {
+          "name": "Load to DB",
+          "status": "WAITING",
+          "progress_percent": 0.0,
+          "completed_items": 0,
+          "total_items": 1000,
+          "current_item": "",
+          "items_per_second": 0.0,
+          "eta_seconds": 0.0,
+          "elapsed_time": 0.0,
+          "error_message": ""
+        },
+        {
+          "name": "Validate",
+          "status": "WAITING",
+          "progress_percent": 0.0,
+          "completed_items": 0,
+          "total_items": 500,
+          "current_item": "",
+          "items_per_second": 0.0,
+          "eta_seconds": 0.0,
+          "elapsed_time": 0.0,
+          "error_message": ""
+        }
+      ]
+    },
+    "Report Generation": {
+      "name": "Report Generation",
+      "status": "COMPLETED",
+      "overall_progress": 100.0,
+      "overall_eta": 0.0,
+      "start_time": 1756815690.1554258,
+      "end_time": 1756815695.3527937,
+      "steps": [
+        {
+          "name": "Collect Metrics",
+          "status": "COMPLETED",
+          "progress_percent": 100.0,
+          "completed_items": 200,
+          "total_items": 200,
+          "current_item": "Processing item 200/200",
+          "items_per_second": 96.58596581440834,
+          "eta_seconds": 0.0,
+          "elapsed_time": 2.0706942081451416,
+          "error_message": ""
+        },
+        {
+          "name": "Process Analytics",
+          "status": "COMPLETED",
+          "progress_percent": 100.0,
+          "completed_items": 150,
+          "total_items": 150,
+          "current_item": "Processing item 150/150",
+          "items_per_second": 95.85790107590448,
+          "eta_seconds": 0.0,
+          "elapsed_time": 1.5648162364959717,
+          "error_message": ""
+        },
+        {
+          "name": "Generate Charts",
+          "status": "COMPLETED",
+          "progress_percent": 100.0,
+          "completed_items": 100,
+          "total_items": 100,
+          "current_item": "Processing item 100/100",
+          "items_per_second": 96.34076340731251,
+          "eta_seconds": 0.0,
+          "elapsed_time": 1.0379822254180908,
+          "error_message": ""
+        },
+        {
+          "name": "Export PDF",
+          "status": "COMPLETED",
+          "progress_percent": 100.0,
+          "completed_items": 50,
+          "total_items": 50,
+          "current_item": "Processing item 50/50",
+          "items_per_second": 95.45225935098078,
+          "eta_seconds": 0.0,
+          "elapsed_time": 0.5238220691680908,
+          "error_message": ""
+        }
+      ]
+    }
+  }
+}
