@@ -188,12 +188,22 @@ class MicroserviceSystem:
 # パターン別処理フロー定義
 
 def simple_read_flow(system, req_type):
-    """軽量な読み取り処理 - 最小限の処理"""
-    # Nginx → APP1 → Service → APP2
-    yield system.env.process(system.nginx.process_request(cpu_ms=5, net_mb=0.5, req_type=req_type))
-    yield system.env.process(system.app1.process_request(cpu_ms=20, ram_gb=1, req_type=req_type))
-    yield system.env.process(system.service.process_request(cpu_ms=30, ram_gb=1, req_type=req_type))
-    yield system.env.process(system.app2.process_request(cpu_ms=15, ram_gb=1, req_type=req_type))
+    """軽量な読み取り処理 - 修正: 入れ子パターン対応（APP1セッション保持）"""
+    # APP1がメインセッションを保持し、他は短期バースト処理
+    with system.app1.acquire_session() as app1_session:
+        yield app1_session
+        
+        # Nginx: ロードバランサー処理（バースト）
+        yield system.env.process(system.nginx.cpu_burst(cpu_ms=5, net_mb=0.5, req_type=req_type))
+        
+        # APP1: メイン処理（セッション保持中）
+        yield system.env.process(system.app1.cpu_burst(cpu_ms=20, ram_gb=1, req_type=req_type))
+        
+        # Service: サービス呼び出し（バースト）
+        yield system.env.process(system.service.cpu_burst(cpu_ms=30, ram_gb=1, req_type=req_type))
+        
+        # APP2: 後続処理（バースト）
+        yield system.env.process(system.app2.cpu_burst(cpu_ms=15, ram_gb=1, req_type=req_type))
 
 def user_auth_flow(system, req_type):
     """ユーザー認証処理 - 認証重視（修正: 入れ子パターン適用）"""
@@ -221,82 +231,128 @@ def user_auth_flow(system, req_type):
     # APP1セッション自動解放（withブロック終了時）
 
 def data_processing_flow(system, req_type):
-    """データ処理 - DB重視"""
-    # Nginx → APP1 → Service → DB → ServiceHub → APP2
-    yield system.env.process(system.nginx.process_request(cpu_ms=10, net_mb=2, req_type=req_type))
-    yield system.env.process(system.app1.process_request(cpu_ms=50, ram_gb=3, req_type=req_type))
-    yield system.env.process(system.service.process_request(cpu_ms=100, ram_gb=4, req_type=req_type))
-    
-    # DB処理（必須）
-    yield system.env.process(system.db.process_request(
-        cpu_ms=200, ram_gb=8, disk_mb=100, net_mb=5, req_type=req_type
-    ))
-    
-    yield system.env.process(system.servicehub.process_request(cpu_ms=80, ram_gb=3, req_type=req_type))
-    yield system.env.process(system.app2.process_request(cpu_ms=60, ram_gb=3, req_type=req_type))
+    """データ処理 - 修正: 入れ子パターン対応（SERVICE+DBセッション保持）"""
+    # ServiceとDBがセッション保持、他は短期バースト処理
+    with system.service.acquire_session() as service_session:
+        with system.db.acquire_session() as db_session:
+            yield system.env.all_of([service_session, db_session])
+            
+            # Nginx: ロードバランサー処理（バースト）
+            yield system.env.process(system.nginx.cpu_burst(cpu_ms=10, net_mb=2, req_type=req_type))
+            
+            # APP1: 前処理（バースト）
+            yield system.env.process(system.app1.cpu_burst(cpu_ms=50, ram_gb=3, req_type=req_type))
+            
+            # Service: データ変換処理（セッション保持中）
+            yield system.env.process(system.service.cpu_burst(cpu_ms=100, ram_gb=4, req_type=req_type))
+            
+            # DB: データ処理（セッション保持中）
+            yield system.env.process(system.db.cpu_burst(
+                cpu_ms=200, ram_gb=8, disk_mb=100, net_mb=5, req_type=req_type
+            ))
+            
+            # ServiceHub: 後続処理（バースト）
+            yield system.env.process(system.servicehub.cpu_burst(cpu_ms=80, ram_gb=3, req_type=req_type))
+            
+            # APP2: 最終処理（バースト）
+            yield system.env.process(system.app2.cpu_burst(cpu_ms=60, ram_gb=3, req_type=req_type))
 
 def file_upload_flow(system, req_type):
-    """ファイルアップロード - ストレージ重視"""
-    # Nginx → APP1 → Auth → Service → S3 + Logger (並列)
-    yield system.env.process(system.nginx.process_request(cpu_ms=15, net_mb=50, req_type=req_type))
-    yield system.env.process(system.app1.process_request(cpu_ms=80, ram_gb=8, req_type=req_type))
-    yield system.env.process(system.auth.process_request(cpu_ms=40, ram_gb=1, req_type=req_type))
-    yield system.env.process(system.service.process_request(cpu_ms=120, ram_gb=6, req_type=req_type))
-    
-    # ストレージ処理（並列）
-    s3_task = system.env.process(system.s3.process_request(
-        cpu_ms=30, ram_gb=10, disk_mb=500, net_mb=100, req_type=req_type
-    ))
-    logger_task = system.env.process(system.logger.process_request(cpu_ms=25, ram_gb=2, req_type=req_type))
-    yield system.env.all_of([s3_task, logger_task])
-    
-    yield system.env.process(system.app2.process_request(cpu_ms=40, ram_gb=4, req_type=req_type))
+    """ファイルアップロード - 修正: 入れ子パターン対応（APP1+S3セッション保持）"""
+    # APP1とS3がセッション保持、他は短期バースト処理
+    with system.app1.acquire_session() as app1_session:
+        with system.s3.acquire_session() as s3_session:
+            yield system.env.all_of([app1_session, s3_session])
+            
+            # Nginx: ファイル受信（バースト）
+            yield system.env.process(system.nginx.cpu_burst(cpu_ms=15, net_mb=50, req_type=req_type))
+            
+            # APP1: ファイル処理（セッション保持中）
+            yield system.env.process(system.app1.cpu_burst(cpu_ms=80, ram_gb=8, req_type=req_type))
+            
+            # Auth: 認証確認（バースト）
+            yield system.env.process(system.auth.cpu_burst(cpu_ms=40, ram_gb=1, req_type=req_type))
+            
+            # Service: ファイル変換（バースト）
+            yield system.env.process(system.service.cpu_burst(cpu_ms=120, ram_gb=6, req_type=req_type))
+            
+            # ストレージ処理（並列バースト + セッション保持）
+            s3_task = system.env.process(system.s3.cpu_burst(
+                cpu_ms=30, ram_gb=10, disk_mb=500, net_mb=100, req_type=req_type
+            ))
+            # Logger: 非同期ログ（バースト）
+            logger_task = system.env.process(system.logger.cpu_burst(cpu_ms=25, ram_gb=2, req_type=req_type))
+            yield system.env.all_of([s3_task, logger_task])
+            
+            # APP2: 後処理（バースト）
+            yield system.env.process(system.app2.cpu_burst(cpu_ms=40, ram_gb=4, req_type=req_type))
 
 def analytics_flow(system, req_type):
-    """分析処理 - 計算集約型"""
-    # Nginx → APP1 → Service + DB (並列) → ServiceHub → APP2
-    yield system.env.process(system.nginx.process_request(cpu_ms=10, net_mb=3, req_type=req_type))
-    yield system.env.process(system.app1.process_request(cpu_ms=100, ram_gb=8, req_type=req_type))
-    
-    # 重い並列処理
-    service_task = system.env.process(system.service.process_request(cpu_ms=300, ram_gb=12, req_type=req_type))
-    db_task = system.env.process(system.db.process_request(
-        cpu_ms=400, ram_gb=16, disk_mb=200, net_mb=10, req_type=req_type
-    ))
-    yield system.env.all_of([service_task, db_task])
-    
-    yield system.env.process(system.servicehub.process_request(cpu_ms=200, ram_gb=8, req_type=req_type))
-    yield system.env.process(system.app2.process_request(cpu_ms=80, ram_gb=6, req_type=req_type))
-    
-    # 分析結果のログ（非同期）
-    system.env.process(system.logger.process_request(cpu_ms=30, ram_gb=3, req_type=req_type))
+    """分析処理 - 修正: 入れ子パターン対応（SERVICE+DB+HUBセッション保持）"""
+    # 計算集約的な処理で複数サーバーがセッション保持
+    with system.service.acquire_session() as service_session:
+        with system.db.acquire_session() as db_session:
+            with system.servicehub.acquire_session() as hub_session:
+                yield system.env.all_of([service_session, db_session, hub_session])
+                
+                # Nginx: API受信（バースト）
+                yield system.env.process(system.nginx.cpu_burst(cpu_ms=10, net_mb=3, req_type=req_type))
+                
+                # APP1: 分析準備（バースト）
+                yield system.env.process(system.app1.cpu_burst(cpu_ms=100, ram_gb=8, req_type=req_type))
+                
+                # 重い並列処理（セッション保持中）
+                service_task = system.env.process(system.service.cpu_burst(cpu_ms=300, ram_gb=12, req_type=req_type))
+                db_task = system.env.process(system.db.cpu_burst(
+                    cpu_ms=400, ram_gb=16, disk_mb=200, net_mb=10, req_type=req_type
+                ))
+                yield system.env.all_of([service_task, db_task])
+                
+                # ServiceHub: 分析結果統合（セッション保持中）
+                yield system.env.process(system.servicehub.cpu_burst(cpu_ms=200, ram_gb=8, req_type=req_type))
+                
+                # APP2: 結果処理（バースト）
+                yield system.env.process(system.app2.cpu_burst(cpu_ms=80, ram_gb=6, req_type=req_type))
+                
+                # 分析結果ログ（非同期バースト）
+                system.env.process(system.logger.cpu_burst(cpu_ms=30, ram_gb=3, req_type=req_type))
 
 def admin_task_flow(system, req_type):
-    """管理者タスク - 全サーバー使用"""
-    # 全サーバーを段階的に使用する重い処理
-    yield system.env.process(system.nginx.process_request(cpu_ms=20, net_mb=5, req_type=req_type))
-    yield system.env.process(system.app1.process_request(cpu_ms=150, ram_gb=10, req_type=req_type))
-    
-    # 認証・認可（管理者権限チェック）
-    auth_task = system.env.process(system.auth.process_request(cpu_ms=80, ram_gb=3, req_type=req_type))
-    policy_task = system.env.process(system.policy.process_request(cpu_ms=120, ram_gb=4, req_type=req_type))
-    yield system.env.all_of([auth_task, policy_task])
-    
-    # メインタスク処理
-    yield system.env.process(system.service.process_request(cpu_ms=250, ram_gb=8, req_type=req_type))
-    yield system.env.process(system.db.process_request(
-        cpu_ms=300, ram_gb=20, disk_mb=150, net_mb=8, req_type=req_type
-    ))
-    yield system.env.process(system.servicehub.process_request(cpu_ms=180, ram_gb=6, req_type=req_type))
-    
-    # 結果保存（並列）
-    s3_task = system.env.process(system.s3.process_request(
-        cpu_ms=50, ram_gb=8, disk_mb=300, net_mb=50, req_type=req_type
-    ))
-    logger_task = system.env.process(system.logger.process_request(cpu_ms=40, ram_gb=4, req_type=req_type))
-    yield system.env.all_of([s3_task, logger_task])
-    
-    yield system.env.process(system.app2.process_request(cpu_ms=100, ram_gb=8, req_type=req_type))
+    """管理者タスク - 修正: 入れ子パターン対応（全主要サーバーセッション保持）"""
+    # 管理者タスクで主要サーバーが長期セッション保持
+    with system.app1.acquire_session() as app1_session:
+        with system.service.acquire_session() as service_session:
+            with system.db.acquire_session() as db_session:
+                with system.servicehub.acquire_session() as hub_session:
+                    yield system.env.all_of([app1_session, service_session, db_session, hub_session])
+                    
+                    # Nginx: 管理者API受信（バースト）
+                    yield system.env.process(system.nginx.cpu_burst(cpu_ms=20, net_mb=5, req_type=req_type))
+                    
+                    # APP1: 管理者セッション処理（セッション保持中）
+                    yield system.env.process(system.app1.cpu_burst(cpu_ms=150, ram_gb=10, req_type=req_type))
+                    
+                    # 認証・認可（管理者権限チェック） - 並列バースト
+                    auth_task = system.env.process(system.auth.cpu_burst(cpu_ms=80, ram_gb=3, req_type=req_type))
+                    policy_task = system.env.process(system.policy.cpu_burst(cpu_ms=120, ram_gb=4, req_type=req_type))
+                    yield system.env.all_of([auth_task, policy_task])
+                    
+                    # メインタスク処理（セッション保持中）
+                    yield system.env.process(system.service.cpu_burst(cpu_ms=250, ram_gb=8, req_type=req_type))
+                    yield system.env.process(system.db.cpu_burst(
+                        cpu_ms=300, ram_gb=20, disk_mb=150, net_mb=8, req_type=req_type
+                    ))
+                    yield system.env.process(system.servicehub.cpu_burst(cpu_ms=180, ram_gb=6, req_type=req_type))
+                    
+                    # 結果保存（並列バースト）
+                    s3_task = system.env.process(system.s3.cpu_burst(
+                        cpu_ms=50, ram_gb=8, disk_mb=300, net_mb=50, req_type=req_type
+                    ))
+                    logger_task = system.env.process(system.logger.cpu_burst(cpu_ms=40, ram_gb=4, req_type=req_type))
+                    yield system.env.all_of([s3_task, logger_task])
+                    
+                    # APP2: 管理者結果処理（バースト）
+                    yield system.env.process(system.app2.cpu_burst(cpu_ms=100, ram_gb=8, req_type=req_type))
 
 # パターン定義
 REQUEST_PATTERNS = [
@@ -369,7 +425,7 @@ def request_generator(system, arrival_rate=2.0, sim_time=100):
 def run_pattern_simulation(arrival_rate, sim_time=60):
     """パターン別シミュレーション実行"""
     print(f"\n{'='*70}")
-    print(f"🚀 マルチパターンシミュレーション: {arrival_rate} req/s")
+    print(f"Multi-Pattern Simulation: {arrival_rate} req/s")
     print(f"{'='*70}")
     
     env = simpy.Environment()
@@ -382,7 +438,7 @@ def run_pattern_simulation(arrival_rate, sim_time=60):
     env.run(until=sim_time)
     
     # === パターン別分析 ===
-    print(f"\n📊 パターン別処理結果")
+    print(f"\nPattern Processing Results:")
     print(f"{'パターン':20} | {'件数':>6} | {'成功率':>8} | {'平均時間':>10} | {'説明'}")
     print("-" * 80)
     
@@ -394,7 +450,7 @@ def run_pattern_simulation(arrival_rate, sim_time=60):
             print(f"{pattern.req_type.value:20} | {metrics['count']:>6} | {success_rate:>6.1f}% | {avg_time:>8.3f}s | {pattern.description}")
     
     # === 全体性能 ===
-    print(f"\n📈 全体性能結果")
+    print(f"\nOverall Performance Results:")
     print(f"  総リクエスト数: {system.total_requests}")
     print(f"  完了リクエスト数: {system.completed_requests}")
     if system.total_requests > 0:
@@ -410,7 +466,7 @@ def run_pattern_simulation(arrival_rate, sim_time=60):
                 print(f"  P95レスポンス時間: {sorted_times[p95_idx]:.3f}秒")
     
     # === サーバー別リクエストタイプ分析 ===
-    print(f"\n🖥️ サーバー別リクエストタイプ分布")
+    print(f"\nServer Request Type Distribution:")
     servers = [system.nginx, system.app1, system.auth, system.policy, 
               system.service, system.db, system.logger, system.s3, 
               system.servicehub, system.app2]
@@ -429,7 +485,7 @@ def run_pattern_simulation(arrival_rate, sim_time=60):
     with open(filename, 'w', encoding='utf-8') as f:
         json.dump(export_data, f, indent=2, ensure_ascii=False)
     
-    print(f"\n💾 パターン別メトリクスを {filename} に保存しました")
+    print(f"\nPattern metrics saved to {filename}")
     
     return system
 
@@ -476,10 +532,10 @@ def export_pattern_data(system, arrival_rate, sim_time):
     return export_data
 
 if __name__ == "__main__":
-    print("🚀 SimPy マルチパターン マイクロサービス シミュレーション")
+    print("SimPy Multi-Pattern Microservice Simulation")
     print("=" * 70)
     
-    print("\n📋 定義されたリクエストパターン:")
+    print("\nDefined Request Patterns:")
     for i, pattern in enumerate(REQUEST_PATTERNS, 1):
         print(f"{i}. {pattern.req_type.value:20} (重み: {pattern.weight:4.1f}%) - {pattern.description}")
     
@@ -490,6 +546,6 @@ if __name__ == "__main__":
         run_pattern_simulation(rate, sim_time=60)
     
     print(f"\n{'='*70}")
-    print("✨ マルチパターンシミュレーション完了")
-    print("📊 各パターンの処理特性とボトルネックを確認してください")
+    print("Multi-Pattern Simulation Complete")
+    print("Please check processing characteristics and bottlenecks for each pattern")
     print("=" * 70)
