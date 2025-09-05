@@ -1,0 +1,7 @@
+# 保護されたパス - これらは safe_rm で削除できません
+docs/ja
+docs/vi
+docs/zh-cn
+docs/ru
+docs/en
+README.md
