@@ -1,0 +1,54 @@
+{
+  "simulation_config": {
+    "arrival_rate": 1.0,
+    "simulation_time": 180,
+    "num_clients": 200,
+    "timestamp": "2025-09-05T16:52:17.753009"
+  },
+  "system_performance": {
+    "total_sessions": 186,
+    "successful_sessions": 101,
+    "success_rate_percent": 54.3010752688172,
+    "avg_e2e_time": 1.7780139145772689,
+    "p95_e2e_time": 4.530126443916956
+  },
+  "component_stats": {
+    "stun_server": {
+      "total_requests": 153,
+      "avg_response_time": 0.07178140229498822
+    },
+    "nat_simulator": {
+      "hole_punches_attempted": 153,
+      "hole_punches_successful": 101,
+      "holes_active": 81,
+      "port_exhaustion_events": 0
+    },
+    "firewall": {
+      "rules_created": 101,
+      "rules_expired": 20,
+      "rule_creation_failures": 0,
+      "cpu_utilization": []
+    },
+    "zero_trust": {
+      "auth_requests": 186,
+      "auth_successes": 153,
+      "risk_assessments": 182,
+      "trust_escalations": 38
+    }
+  },
+  "client_distribution": {
+    "nat_types": {
+      "full_cone": 33,
+      "restricted_cone": 64,
+      "port_restricted": 72,
+      "symmetric": 31
+    },
+    "trust_levels": {
+      "untrusted": 58,
+      "low": 49,
+      "medium": 51,
+      "high": 32,
+      "verified": 10
+    }
+  }
+}
