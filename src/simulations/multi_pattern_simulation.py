@@ -31,6 +31,9 @@ class Server:
         self.disk = simpy.Resource(env, capacity=disk_q)
         self.net_mbps = net_mbps
         
+        # セッション管理用リソース（ワーカープール）- 修正: 入れ子パターン対応
+        self.sessions = simpy.Resource(env, capacity=threads * 2)  # CPUより多くのセッション
+        
         # メトリクス
         self.total_requests = 0
         self.cpu_time = 0
@@ -104,6 +107,58 @@ class Server:
         self.response_times.append(end_time - start_time)
         self.ram_usage.append(self.ram.level)
 
+    def acquire_session(self):
+        """セッション/接続スロットを取得 - リクエスト終了まで保持"""
+        return self.sessions.request()
+        
+    def cpu_burst(self, cpu_ms=50, ram_gb=1, disk_mb=10, net_mb=5, req_type=None):
+        """CPU処理バースト - 即座に取得/解放（修正: 入れ子パターン用）"""
+        start_time = self.env.now
+        start_second = int(start_time)
+        
+        # メトリクス記録
+        self.per_second_metrics[start_second]['requests_started'] += 1
+        if req_type:
+            self.per_second_metrics[start_second]['request_types'][req_type.value] += 1
+            self.request_types[req_type.value] += 1
+        
+        # メモリ確保
+        yield self.ram.get(ram_gb)
+        
+        try:
+            # CPU処理（即座に取得/解放）
+            with self.cpu.request() as req:
+                yield req
+                cpu_time = cpu_ms / 1000.0
+                yield self.env.timeout(cpu_time)
+                self.cpu_time += cpu_time
+                
+                current_second = int(self.env.now)
+                self.per_second_metrics[current_second]['cpu_usage'] += cpu_time
+            
+            # Disk I/O
+            if disk_mb > 0:
+                with self.disk.request() as dreq:
+                    yield dreq
+                    queue_second = int(self.env.now)
+                    self.per_second_metrics[queue_second]['disk_queue'] = len(self.disk.queue)
+                    yield self.env.timeout(disk_mb / 500)
+            
+            # Network処理
+            if net_mb > 0:
+                yield self.env.timeout(net_mb / (self.net_mbps / 8))
+                
+        finally:
+            # メモリ解放
+            yield self.ram.put(ram_gb)
+            
+        # 完了記録
+        end_time = self.env.now
+        end_second = int(end_time)
+        self.per_second_metrics[end_second]['requests_completed'] += 1
+        self.total_requests += 1
+        self.response_times.append(end_time - start_time)
+
 class MicroserviceSystem:
     def __init__(self, env):
         self.env = env
@@ -141,18 +196,29 @@ def simple_read_flow(system, req_type):
     yield system.env.process(system.app2.process_request(cpu_ms=15, ram_gb=1, req_type=req_type))
 
 def user_auth_flow(system, req_type):
-    """ユーザー認証処理 - 認証重視"""
-    # Nginx → APP1 → Auth + Policy (並列) → Service → APP2
-    yield system.env.process(system.nginx.process_request(cpu_ms=10, net_mb=1, req_type=req_type))
-    yield system.env.process(system.app1.process_request(cpu_ms=40, ram_gb=2, req_type=req_type))
+    """ユーザー認証処理 - 認証重視（修正: 入れ子パターン適用）"""
+    # APP1がセッションを保持し、他サーバーはCPUバーストのみ実行
+    with system.app1.acquire_session() as app1_session:
+        yield app1_session
+        
+        # Nginx: CPUバーストのみ
+        yield system.env.process(system.nginx.cpu_burst(cpu_ms=10, net_mb=1, req_type=req_type))
+        
+        # APP1: CPUバースト（セッションは既に保持中）
+        yield system.env.process(system.app1.cpu_burst(cpu_ms=40, ram_gb=2, req_type=req_type))
+        
+        # 認証・認可処理（並列CPUバースト）
+        auth_task = system.env.process(system.auth.cpu_burst(cpu_ms=60, ram_gb=2, req_type=req_type))
+        policy_task = system.env.process(system.policy.cpu_burst(cpu_ms=45, ram_gb=1, req_type=req_type))
+        yield system.env.all_of([auth_task, policy_task])
+        
+        # Service: CPUバースト
+        yield system.env.process(system.service.cpu_burst(cpu_ms=50, ram_gb=2, req_type=req_type))
+        
+        # APP2: CPUバースト
+        yield system.env.process(system.app2.cpu_burst(cpu_ms=30, ram_gb=2, req_type=req_type))
     
-    # 認証・認可処理（並列）
-    auth_task = system.env.process(system.auth.process_request(cpu_ms=60, ram_gb=2, req_type=req_type))
-    policy_task = system.env.process(system.policy.process_request(cpu_ms=45, ram_gb=1, req_type=req_type))
-    yield system.env.all_of([auth_task, policy_task])
-    
-    yield system.env.process(system.service.process_request(cpu_ms=50, ram_gb=2, req_type=req_type))
-    yield system.env.process(system.app2.process_request(cpu_ms=30, ram_gb=2, req_type=req_type))
+    # APP1セッション自動解放（withブロック終了時）
 
 def data_processing_flow(system, req_type):
     """データ処理 - DB重視"""

@@ -45,3 +45,8 @@ Thumbs.db
 # Local settings
 .env
 .env.local
+
+# Run artifacts
+pattern_metrics_*.json
+results/**/*.json
+**/.trash/
